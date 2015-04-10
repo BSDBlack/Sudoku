@@ -37,17 +37,31 @@ public class Field {
 		int rand;
 		int row, column;
 		
-		for(int i = 0; i < 81; i++) {
-			for(int j = 0; j < 9; j++)
+		for(int i = 0; i < 27; i++)
+		{
+			do
 			{
-				for(int k = 0; k < 9;)
-				{
-					rand = (int) (Math.random() * 9 + 1);
-					if(IsPossible(rand, j, k))
-					{
-						solvedField[j][k] = rand;
-						k++;
-					}
+				rand = (int) (Math.random() * 9 + 1);
+				row = (int) (Math.random() * 9);
+				column = (int) (Math.random() * 9);
+				
+			}while (!IsPossible(rand, row, column));
+			solvedField[row][column] = rand;
+		}
+		
+		// Backtrace-Lösung sollte ab hier funktionieren
+		
+//		for(int i = 0; i < 81; i++) {
+//			for(int j = 0; j < 9; j++)
+//			{
+//				for(int k = 0; k < 9;)
+//				{
+//					rand = (int) (Math.random() * 9 + 1);
+//					if(IsPossible(rand, j, k))
+//					{
+//						solvedField[j][k] = rand;
+//						k++;
+//					}
 //					row = (int) (Math.random() * 9);
 //					column = (int) (Math.random() * 9);
 //					if(IsPossible(j, row, column))
@@ -55,8 +69,8 @@ public class Field {
 //						solvedField[row][column] = j;
 //						k++;
 //					}
-				}
-			}
+//				}
+//			}
 			
 			
 //			do {
@@ -66,7 +80,7 @@ public class Field {
 //				
 //			} while(!IsPossible(rand, row, column));
 //			solvedField[row][column] = rand;
-		}
+//		}
 
 		modifiedField = solvedField.clone();
 		
@@ -221,7 +235,7 @@ public class Field {
 	}
 	
 	
-public void fillIn(int zahl, int row, int column){
+	public void fillIn(int zahl, int row, int column){
 		
 		row = row - 1;
 		column = column -1;
@@ -245,7 +259,7 @@ public void fillIn(int zahl, int row, int column){
 			
 			for (int column = 0; column < 9; column++){
 				
-				if (modifiedField[row][column] = 0){
+				if (modifiedField[row][column] == 0){
 					System.out.println("# ");
 				}else{
 					System.out.println(modifiedField[row][column]);
@@ -280,37 +294,36 @@ public void fillIn(int zahl, int row, int column){
 	public void difficulty(int x){
 		int count=0;
 		int row, column;
-	if(x==1)
-		count = (int) (Math.random()*8)+17;
+		if(x==1)
+			count = (int) (Math.random()*8)+17;
 	
-	if(x==2)
-		count = (int) (Math.random()*8)+25;
+		if(x==2)
+			count = (int) (Math.random()*8)+25;
 	
-	if(x==3)
-		count = (int) (Math.random()*8)+33;
+		if(x==3)
+			count = (int) (Math.random()*8)+33;
 	
-	count = 81-count;
+		count = 81-count;
 	
 	
-	for(int i=81; i>count; ){
-		row = (int) (Math.random()*9);
-		column = (int) (Math.random()*9);
-		if(modifiedField[row][column]!=0){
-			modifiedField[row][column]=0;
-			i--;
+		for(int i=81; i>count; ){
+			row = (int) (Math.random()*9);
+			column = (int) (Math.random()*9);
+			if(modifiedField[row][column]!=0){
+				modifiedField[row][column]=0;
+				i--;
+			}
 		}
-	}
-	permField = new boolean [9][9];
-	for(int column=0; i<modifiedField.length(); column++){
-		for(int row=0; l<modifiedField[column].length(); row++){
-			if(modifiedField[column][row]==0)
-				permField[column][row]=true;
-			else
-				permField[column][row]=false;
+		permField = new boolean [9][9];
+		for(int column1 = 0; column1 < modifiedField.length; column1++){
+			for(int row1 = 0; row1 < modifiedField[column1].length; row1++){
+				if(modifiedField[column1][row1]==0)
+					permField[column1][row1]=true;
+				else
+					permField[column1][row1]=false;
+			}
 		}
-	}
 	
 	}
-
 
 }
