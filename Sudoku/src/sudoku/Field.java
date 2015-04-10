@@ -276,5 +276,41 @@ public void fillIn(int zahl, int row, int column){
 		
 		return toReturn;
 	}
+	
+	public void difficulty(int x){
+		int count=0;
+		int row, column;
+	if(x==1)
+		count = (int) (Math.random()*8)+17;
+	
+	if(x==2)
+		count = (int) (Math.random()*8)+25;
+	
+	if(x==3)
+		count = (int) (Math.random()*8)+33;
+	
+	count = 81-count;
+	
+	
+	for(int i=81; i>count; ){
+		row = (int) (Math.random()*9);
+		column = (int) (Math.random()*9);
+		if(modifiedField[row][column]!=0){
+			modifiedField[row][column]=0;
+			i--;
+		}
+	}
+	permField = new boolean [9][9];
+	for(int column=0; i<modifiedField.length(); column++){
+		for(int row=0; l<modifiedField[column].length(); row++){
+			if(modifiedField[column][row]==0)
+				permField[column][row]=true;
+			else
+				permField[column][row]=false;
+		}
+	}
+	
+	}
+
 
 }
