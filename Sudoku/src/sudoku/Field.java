@@ -219,5 +219,62 @@ public class Field {
 		}
 		return true;
 	}
+	
+	
+public void fillIn(int zahl, int row, int column){
+		
+		row = row - 1;
+		column = column -1;
+		
+		if (row >= 0 && row <= 8 && column >= 0 && column <= 8 &&
+				zahl >= 1 && zahl <= 9 && permField[row][column] == true){
+			
+			//Setze Ziffer an den gegebenen Koordinaten.
+			modifiedField[row][column] = zahl;
+			
+		}else{
+			System.out.println("Error: Ungültige Eingabe.");
+		}
+	}
+	
+	
+	public void output(){
+		
+		for (int row = 0; row < 9; row++){
+			System.out.println();
+			
+			for (int column = 0; column < 9; column++){
+				
+				if (modifiedField[row][column] = 0){
+					System.out.println("# ");
+				}else{
+					System.out.println(modifiedField[row][column]);
+				}
+				
+			}
+		}
+	}
+	
+	private static boolean compare(int[][] a, int[][] b){
+		
+		int pruef = 0;
+		boolean toReturn = false;
+		
+		for (int row = 0; row < a.length; row++){
+			for (int column = 0; column < a.length; column++){
+			
+				if (a[row][column] == b[row][column]){
+					pruef = pruef + 1;	
+				}
+			
+				if (pruef == Math.pow(a.length, 2)){
+				
+					toReturn = true;
+				}
+			}
+		}
+		
+		return toReturn;
+	}
 
 }
