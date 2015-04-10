@@ -1,3 +1,4 @@
+package sudoku;
 import java.util.Scanner;
 
 public class SuSu {
@@ -7,7 +8,7 @@ public class SuSu {
 			
 			
 			Scanner sc = new Scanner (System.in);
-			System.out.println("wie schwer solls den werden??? wähle 1 für Schwer, 2 für normal und 3 für leicht");
+			System.out.println("wie schwer solls den werden??? wï¿½hle 1 fï¿½r Schwer, 2 fï¿½r normal und 3 fï¿½r leicht");
 			int sg = sc.nextInt();
 			
 		//sudoku wird erstellt und nach schwirigkeit generiert
@@ -25,7 +26,7 @@ public class SuSu {
 			spalte = versuch.charAt(2);
 			wert = versuch.charAt(4);
 			
-			//überprüfung auf true
+			//ï¿½berprï¿½fung auf true
 			
 			for(int i = 0; i <9; i++){
 				for(int j = 0; j <9; j++)
@@ -40,7 +41,7 @@ public class SuSu {
 				//input : [zeile],[spalte],[wert]
 
 			
-			//überprüfung
+			//ï¿½berprï¿½fung
 		}
 
 	}
