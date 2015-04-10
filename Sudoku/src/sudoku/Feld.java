@@ -26,5 +26,28 @@ public class Feld {
 		}
 		
 	}
+	
+	private static boolean pruefen (int zahl, int row, int column)
+	{	
+		for(int i = 0; i < row; i ++)
+		{
+			if(geloestesFeld[i][column] == zahl)
+			{
+				return false;
+			}
+		}
+		for(int i = 0; i < column; i ++)
+		{
+			if(geloestesFeld[row][i] == zahl)
+			{
+				return false;
+			}
+		}
+		
+		
+		
+		
+		return true;
+	}
 
 }
