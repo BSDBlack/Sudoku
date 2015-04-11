@@ -26,6 +26,9 @@ public class Field {
 	
 	public static void Generator(){
 		
+		int columnLength = 9;
+		int rowLength = 9;
+		
 		solvedField = new int[9][9];
 		for(int i = 0; i < 9; i++)
 		{
@@ -34,53 +37,26 @@ public class Field {
 				solvedField[i][j] = 0;
 			}
 		}
-		int rand;
-		int row, column;
 		
-		for(int i = 0; i < 27; i++)
+//		3.Weg wir lassen uns einfach nur die erste Zeilen mit Randomzahlen beschreiben
+//		und verschieben diese einfach um n stellen bei jedem Schritt nach unten, wobei
+//		noch heruaszufinden ist wie groß n sein muss, damit es gültig ist.
+		
+		int rand;
+
+		for(int columnPosition = 0; columnPosition < rowLength; columnPosition ++)
 		{
-			do
-			{
-				rand = (int) (Math.random() * 9 + 1);
-				row = (int) (Math.random() * 9);
-				column = (int) (Math.random() * 9);
-				
-			}while (!IsPossible(rand, row, column));
-			solvedField[row][column] = rand;
+			do {
+			rand = (int) (Math.random() * 9 + 1);
+			} while (!IsPossible(rand, 0, columnPosition));
+			solvedField[0][columnPosition] = rand;
+			
 		}
 		
-		// Backtrace-Lösung sollte ab hier funktionieren
-		
-//		for(int i = 0; i < 81; i++) {
-//			for(int j = 0; j < 9; j++)
-//			{
-//				for(int k = 0; k < 9;)
-//				{
-//					rand = (int) (Math.random() * 9 + 1);
-//					if(IsPossible(rand, j, k))
-//					{
-//						solvedField[j][k] = rand;
-//						k++;
-//					}
-//					row = (int) (Math.random() * 9);
-//					column = (int) (Math.random() * 9);
-//					if(IsPossible(j, row, column))
-//					{
-//						solvedField[row][column] = j;
-//						k++;
-//					}
-//				}
-//			}
-			
-			
-//			do {
-//				row = (int) (Math.random() * 9);
-//				column = (int) (Math.random() * 9);
-//				
-//				
-//			} while(!IsPossible(rand, row, column));
-//			solvedField[row][column] = rand;
-//		}
+		for(int rowPosition = 0; rowPosition < columnLength; rowPosition ++)
+		{
+			solvedField[rowPosition] = ShiftArray(solvedField[0], 4*(rowPosition+1));
+		}
 
 		modifiedField = solvedField.clone();
 		
@@ -104,133 +80,133 @@ public class Field {
 				return false;
 			}
 		}
-		
-		if(row >= 0 && row <= 2 &&
-			column >= 0 && column <= 2)
-		{
-			for(int i = 0; i < 3; i++)
-			{
-				for(int j = 0; j < 3; j++)
-				{
-					if(solvedField[i][j] == number)
-					{
-						return false;
-					}
-				}
-			}
-		}
-		else if(row >= 0 && row <= 2 &&
-			column >= 3 && column <= 5)
-		{
-			for(int i = 0; i < 3; i++)
-			{
-				for(int j = 0; j < 3; j++)
-				{
-					if(solvedField[i][j+3] == number)
-					{
-						return false;
-					}
-				}
-			}
-		}
-		else if(row >= 0 && row <= 2 &&
-			column >= 6 && column <= 8)
-		{
-				for(int i = 0; i < 3; i++)
-			{
-				for(int j = 0; j < 3; j++)
-				{
-					if(solvedField[i][j+6] == number)
-					{
-						return false;
-					}
-				}
-			}
-		}
-		else if(row >= 3 && row <= 5 &&
-			column >= 0 && column <= 2)
-		{
-				for(int i = 0; i < 3; i++)
-			{
-				for(int j = 0; j < 3; j++)
-				{
-					if(solvedField[i+3][j] == number)
-					{
-						return false;
-					}
-				}
-			}
-		}
-		else if(row >= 3 && row <= 5 &&
-			column >= 3 && column <= 5)
-		{
-				for(int i = 0; i < 3; i++)
-			{
-				for(int j = 0; j < 3; j++)
-				{
-					if(solvedField[i+3][j+3] == number)
-					{
-						return false;
-					}
-				}
-			}
-		}
-		else if(row >= 3 && row <= 5 &&
-			column >= 6 && column <= 8)
-		{
-				for(int i = 0; i < 3; i++)
-			{
-				for(int j = 0; j < 3; j++)
-				{
-					if(solvedField[i+3][j+6] == number)
-					{
-						return false;
-					}
-				}
-			}
-		}
-		else if(row >= 6 && row <= 8 &&
-			column >= 0 && column <= 2)
-		{
-				for(int i = 0; i < 3; i++)
-			{
-				for(int j = 0; j < 3; j++)
-				{
-					if(solvedField[i+6][j] == number)
-					{
-						return false;
-					}
-				}
-			}
-		}
-		else if(row >= 6 && row <= 8 &&
-			column >= 3 && column <= 5)
-		{
-				for(int i = 0; i < 3; i++)
-			{
-				for(int j = 0; j < 3; j++)
-				{
-					if(solvedField[i+6][j+3] == number)
-					{
-						return false;
-					}
-				}
-			}
-		}
-		else if(row >= 6 && row <= 8 &&
-			column >= 6 && column <= 8)
-		{
-				for(int i = 0; i < 3; i++)
-			{
-				for(int j = 0; j < 3; j++)
-				{
-					if(solvedField[i+6][j+6] == number)
-					{
-						return false;
-					}
-				}
-			}
-		}
+//		
+//		if(row >= 0 && row <= 2 &&
+//			column >= 0 && column <= 2)
+//		{
+//			for(int i = 0; i < 3; i++)
+//			{
+//				for(int j = 0; j < 3; j++)
+//				{
+//					if(solvedField[i][j] == number)
+//					{
+//						return false;
+//					}
+//				}
+//			}
+//		}
+//		else if(row >= 0 && row <= 2 &&
+//			column >= 3 && column <= 5)
+//		{
+//			for(int i = 0; i < 3; i++)
+//			{
+//				for(int j = 0; j < 3; j++)
+//				{
+//					if(solvedField[i][j+3] == number)
+//					{
+//						return false;
+//					}
+//				}
+//			}
+//		}
+//		else if(row >= 0 && row <= 2 &&
+//			column >= 6 && column <= 8)
+//		{
+//				for(int i = 0; i < 3; i++)
+//			{
+//				for(int j = 0; j < 3; j++)
+//				{
+//					if(solvedField[i][j+6] == number)
+//					{
+//						return false;
+//					}
+//				}
+//			}
+//		}
+//		else if(row >= 3 && row <= 5 &&
+//			column >= 0 && column <= 2)
+//		{
+//				for(int i = 0; i < 3; i++)
+//			{
+//				for(int j = 0; j < 3; j++)
+//				{
+//					if(solvedField[i+3][j] == number)
+//					{
+//						return false;
+//					}
+//				}
+//			}
+//		}
+//		else if(row >= 3 && row <= 5 &&
+//			column >= 3 && column <= 5)
+//		{
+//				for(int i = 0; i < 3; i++)
+//			{
+//				for(int j = 0; j < 3; j++)
+//				{
+//					if(solvedField[i+3][j+3] == number)
+//					{
+//						return false;
+//					}
+//				}
+//			}
+//		}
+//		else if(row >= 3 && row <= 5 &&
+//			column >= 6 && column <= 8)
+//		{
+//				for(int i = 0; i < 3; i++)
+//			{
+//				for(int j = 0; j < 3; j++)
+//				{
+//					if(solvedField[i+3][j+6] == number)
+//					{
+//						return false;
+//					}
+//				}
+//			}
+//		}
+//		else if(row >= 6 && row <= 8 &&
+//			column >= 0 && column <= 2)
+//		{
+//				for(int i = 0; i < 3; i++)
+//			{
+//				for(int j = 0; j < 3; j++)
+//				{
+//					if(solvedField[i+6][j] == number)
+//					{
+//						return false;
+//					}
+//				}
+//			}
+//		}
+//		else if(row >= 6 && row <= 8 &&
+//			column >= 3 && column <= 5)
+//		{
+//				for(int i = 0; i < 3; i++)
+//			{
+//				for(int j = 0; j < 3; j++)
+//				{
+//					if(solvedField[i+6][j+3] == number)
+//					{
+//						return false;
+//					}
+//				}
+//			}
+//		}
+//		else if(row >= 6 && row <= 8 &&
+//			column >= 6 && column <= 8)
+//		{
+//				for(int i = 0; i < 3; i++)
+//			{
+//				for(int j = 0; j < 3; j++)
+//				{
+//					if(solvedField[i+6][j+6] == number)
+//					{
+//						return false;
+//					}
+//				}
+//			}
+//		}
 		return true;
 	}
 	
@@ -324,6 +300,30 @@ public class Field {
 			}
 		}
 	
+	}
+	
+	private static int[] ShiftArray(int[] array, int count)
+	{
+		int[] tempArray = array.clone();
+		int diff;
+		
+		if(count > 9)
+			count %= 9;
+		
+		for( int i = 0; i < array.length; i++)
+		{		
+			if(i + count < array.length)
+			{
+				tempArray[i+count] = array[i];
+			}
+			else if(i + count >= array.length)
+			{
+				diff = count + i - array.length;
+				tempArray[diff] = array[i];
+			}
+		}
+		
+		return tempArray;
 	}
 
 }
