@@ -41,6 +41,11 @@ public class Field {
 //		3.Weg wir lassen uns einfach nur die erste Zeilen mit Randomzahlen beschreiben
 //		und verschieben diese einfach um n stellen bei jedem Schritt nach unten, wobei
 //		noch heruaszufinden ist wie groß n sein muss, damit es gültig ist.
+// 		Anmerkung Jan :
+//		Es waere moeglich die ersten zeile um eine stlele zu verschieben wobei sich dann die Zeile 3 drei vergroessern muesste 
+//		Im nächsten Schrott geht die zeile ebenso weiter und startet dann aber bei zeile 2 ,das drei mal.
+//		das schieben geht weiter ,nun start zeile drei und weitergehen um 3 zeilen.
+// 		Danach Test der richtigkeit und dann passt es so!
 		
 		int rand;
 
