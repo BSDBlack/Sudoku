@@ -260,7 +260,7 @@ public class Field {
 			for (int column = 0; column < a.length; column++){
 			
 				if (a[row][column] == b[row][column]){
-					pruef = pruef + 1;	
+					pruef++;	
 				}
 			
 				if (pruef == Math.pow(a.length, 2)){
