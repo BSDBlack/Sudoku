@@ -63,8 +63,8 @@ public class Field {
 			solvedField[rowPosition] = ShiftArray(solvedField[0], 4*(rowPosition+1));
 		}
 		
-		System.arraycopy(solvedField, 0, modifiedField, 0, solvedField.length);
-		//modifiedField = solvedField.clone();
+		//System.arraycopy(solvedField, 0, modifiedField, 0, solvedField.length);
+		modifiedField = solvedField.clone();
 		
 	}
 	
@@ -311,9 +311,9 @@ public class Field {
 	private static int[] ShiftArray(int[] array, int count)
 	{
 		
-		int[] tempArray = new int[array.length];
-		System.arraycopy(array, 0, tempArray, 0, array.length);
-		//int[] tempArray = array.clone();
+		//int[] tempArray = new int[array.length];
+		//System.arraycopy(array, 0, tempArray, 0, array.length);
+		int[] tempArray = array.clone();
 		int diff;
 		
 		if(count > 9)
